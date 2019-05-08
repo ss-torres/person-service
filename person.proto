@@ -1,0 +1,61 @@
+// [START declaration]
+syntax = "proto3";
+package tutorial;
+
+import "google/protobuf/timestamp.proto";
+// [END declaration]
+
+// [START messages]
+message Person {
+    string name = 1;
+    int32 id = 2;   // Unique ID number for this person.
+    string email = 3;
+
+    enum PhoneType {
+        MOBILE = 0;
+        HOME = 1;
+        WORK = 2;
+    }
+
+    message PhoneNumber {
+        string number = 1;
+        PhoneType type = 2;
+    }
+
+    repeated PhoneNumber phones = 4;
+
+    google.protobuf.Timestamp last_updated = 5;
+}
+
+// Our address book file is just one of these.
+message AddressBook {
+    repeated Person people = 1;
+}
+
+// rpc调用的结果
+message Result {
+    bool success = 1;
+}
+
+// rpc请求的个数
+message ReqNum {
+    int32 num = 1;
+}
+
+message ReqName {
+    string name = 1;
+}
+
+// [END messages]
+
+// Interface exported by the server.
+service Manage {
+    // 添加一个人
+    rpc AddPerson(Person) returns (Result) {}
+    // 添加很多人
+    rpc AddPersons(stream Person) returns (Result) {}
+    // 获取指定数目的个人列表
+    rpc GetPersonsLimit(ReqNum) returns (stream Person) {}
+    // 获取名字为输入的个人列表
+    rpc GetPersons(stream ReqName) returns (stream Person) {}
+}
