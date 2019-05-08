@@ -14,3 +14,5 @@ $ cmake ..
 $ make  
 其中生成的person-client和person-server分别是客户端和服务端, 使用./person-client和./person-server启动这两个应用就可以在person-client中  
 看到相关输出.  
+  
+文档说明可以参考: https://www.cnblogs.com/albizzia/p/10830878.html
