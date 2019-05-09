@@ -5,7 +5,7 @@ C++实现的一个grpc调用的简单示例
 (1) person_manip.h  
 (2) person_client.cpp  
 服务端代码:  
-(1) person_manage.h 
+(1) person_manage.h  
 (2) person_server.cpp  
   
 编译上述代码依赖protobuf, grpc和folly库, 这些可以参考:  
